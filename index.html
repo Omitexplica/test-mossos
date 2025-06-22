@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Oposicions Mossos d'Esquadra</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Test Oposicions Mossos d'Esquadra</h1>
+        </header>
+
+        <!-- Página principal -->
+        <main id="home-page" class="page active">
+            <div class="sections-grid">
+                <div class="section-card">
+                    <h2>Àmbit de coneixements de l'entorn</h2>
+                    <div class="subsection-buttons">
+                        <button onclick="showSubsection('historia-cat-1')" class="subsection-btn">Història de Catalunya (part I)</button>
+                        <button onclick="showSubsection('historia-cat-2')" class="subsection-btn">Història de Catalunya (part II)</button>
+                        <button onclick="showSubsection('historia-policia')" class="subsection-btn">Història de la policia a Catalunya</button>
+                        <button onclick="showSubsection('sociolinguistic')" class="subsection-btn">Àmbit sociolingüístic</button>
+                        <button onclick="showSubsection('geografia')" class="subsection-btn">Marc geogràfic de Catalunya</button>
+                        <button onclick="showSubsection('entorn-social')" class="subsection-btn">Entorn social a Catalunya</button>
+                        <button onclick="showSubsection('tecnologies')" class="subsection-btn">Les tecnologies de la informació en el segle XXI</button>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2>Àmbit institucional</h2>
+                    <div class="subsection-buttons">
+                        <button onclick="showSubsection('estatut')" class="subsection-btn">L'Estatut d'autonomia de Catalunya (EAC)</button>
+                        <button onclick="showSubsection('institucions-cat')" class="subsection-btn">Les institucions polítiques de Catalunya</button>
+                        <button onclick="showSubsection('ordenament-juridic')" class="subsection-btn">L'ordenament jurídic de l'Estat</button>
+                        <button onclick="showSubsection('drets-humans')" class="subsection-btn">Els drets humans i els drets constitucionals</button>
+                        <button onclick="showSubsection('institucions-estat')" class="subsection-btn">Les institucions polítiques de l'Estat</button>
+                        <button onclick="showSubsection('organs-jurisdiccionals')" class="subsection-btn">Els òrgans jurisdiccionals</button>
+                        <button onclick="showSubsection('organitzacio-territorial')" class="subsection-btn">L'organització territorial de l'Estat</button>
+                        <button onclick="showSubsection('unio-europea')" class="subsection-btn">La Unió Europea</button>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <h2>Àmbit de seguretat i policia</h2>
+                    <div class="subsection-buttons">
+                        <button onclick="showSubsection('competencies')" class="subsection-btn">Les competències de la Generalitat en matèria de seguretat</button>
+                        <button onclick="showSubsection('departament-interior')" class="subsection-btn">El Departament d'Interior</button>
+                        <button onclick="showSubsection('coordinacio-policial')" class="subsection-btn">La coordinació policial</button>
+                        <button onclick="showSubsection('marc-legal')" class="subsection-btn">El marc legal de la seguretat</button>
+                        <button onclick="showSubsection('codi-deontologic')" class="subsection-btn">El Codi deontològic policial</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Página del test -->
+        <div id="test-page" class="page">
+            <div class="test-header">
+                <button onclick="goHome()" class="back-btn">← Tornar a l'inici</button>
+                <h2 id="test-title"></h2>
+            </div>
+            
+            <div id="test-content">
+                <div id="questions-container"></div>
+                <div class="test-actions">
+                    <button id="submit-btn" onclick="submitTest()" class="primary-btn">Enviar respostes</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página de resultados -->
+        <div id="results-page" class="page">
+            <div class="results-header">
+                <button onclick="goHome()" class="back-btn">← Tornar a l'inici</button>
+                <h2>Resultats del test</h2>
+            </div>
+            
+            <div id="results-content">
+                <div id="score-summary"></div>
+                <div id="detailed-results"></div>
+                <div class="results-actions">
+                    <button onclick="retakeTest()" class="secondary-btn">Repetir test</button>
+                    <button onclick="goHome()" class="primary-btn">Tornar a l'inici</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
