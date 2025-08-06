@@ -1,18 +1,30 @@
-
 <!DOCTYPE html>
 <html lang="ca">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Oposicions Mossos d'Esquadra</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8013371871259572"
-     crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Test Oposicions Mossos d'Esquadra</h1>
+            <div class="header-content">
+                <div class="logo-section">
+                    <i class="fas fa-shield-alt"></i>
+                    <h1>Test Oposicions<br><span>Mossos d'Esquadra</span></h1>
+                </div>
+                <div class="youtube-section">
+                    <a href="https://www.youtube.com/@omitexplica/videos" target="_blank" class="youtube-link">
+                        <i class="fab fa-youtube"></i>
+                        <div class="youtube-text">
+                            <span class="youtube-title">Teoria completa</span>
+                            <span class="youtube-subtitle">@omitexplica</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </header>
 
         <!-- Página principal -->
@@ -56,6 +68,14 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="random-test-section">
+                <button onclick="startRandomTest()" class="random-test-btn">
+                    <i class="fas fa-random"></i>
+                    Test Aleatori (30 preguntes)
+                </button>
+                <p class="random-test-description">Practica amb preguntes aleatòries de tot el temari</p>
+            </div>
         </main>
 
         <!-- Página del test -->
@@ -64,7 +84,7 @@
                 <button onclick="goHome()" class="back-btn">← Tornar a l'inici</button>
                 <h2 id="test-title"></h2>
             </div>
-            
+
             <div id="test-content">
                 <div id="questions-container"></div>
                 <div class="test-actions">
@@ -79,7 +99,7 @@
                 <button onclick="goHome()" class="back-btn">← Tornar a l'inici</button>
                 <h2>Resultats del test</h2>
             </div>
-            
+
             <div id="results-content">
                 <div id="score-summary"></div>
                 <div id="detailed-results"></div>
@@ -90,8 +110,7 @@
             </div>
         </div>
     </div>
-    
-    
+
     <script src="script.js"></script>
 </body>
 </html>
