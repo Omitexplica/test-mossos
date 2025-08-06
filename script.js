@@ -1,4 +1,3 @@
-
 /**
  * Aplicació de tests per a oposicions Mossos d'Esquadra
  * JavaScript pur sense frameworks
@@ -6252,6 +6251,103 @@ const questionsData = {
 };
 
 /**
+ * Inicia un test aleatori amb 30 preguntes de tot el temari
+ */
+function startRandomTest() {
+    currentSubsection = 'random';
+    
+    // Recull totes les preguntes de totes les seccions
+    let allQuestions = [];
+    Object.keys(questionsData).forEach(sectionId => {
+        const section = questionsData[sectionId];
+        section.questions.forEach(question => {
+            allQuestions.push({
+                ...question,
+                section: section.title,
+                sectionId: sectionId
+            });
+        });
+    });
+    
+    // Barreja les preguntes aleatòriament
+    shuffleArray(allQuestions);
+    
+    // Selecciona les primeres 30 preguntes
+    const selectedQuestions = allQuestions.slice(0, 30);
+    
+    // Reassigna IDs únics per evitar conflictes
+    selectedQuestions.forEach((question, index) => {
+        question.originalId = question.id;
+        question.id = index + 1;
+    });
+    
+    // Reseteja les respostes de l'usuari
+    userAnswers = {};
+    
+    // Actualitza el títol
+    document.getElementById('test-title').textContent = 'Test Aleatori - 30 Preguntes';
+    
+    // Genera les preguntes
+    generateRandomQuestions(selectedQuestions);
+    
+    // Mostra la pàgina del test
+    showPage('test-page');
+}
+
+/**
+ * Genera el HTML per les preguntes del test aleatori
+ * @param {Array} questions - Array de preguntes aleatòries
+ */
+function generateRandomQuestions(questions) {
+    currentQuestions = questions;
+    const container = document.getElementById('questions-container');
+    container.innerHTML = '';
+    
+    questions.forEach((question, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question';
+        
+        let optionsHTML = '';
+        question.options.forEach((option, optionIndex) => {
+            optionsHTML += `
+                <div class="option">
+                    <input type="radio" 
+                           id="q${question.id}_${optionIndex}" 
+                           name="question_${question.id}" 
+                           value="${optionIndex}"
+                           onchange="saveAnswer(${question.id}, ${optionIndex})">
+                    <label for="q${question.id}_${optionIndex}">${option}</label>
+                </div>
+            `;
+        });
+        
+        questionDiv.innerHTML = `
+            <h3>
+                <span class="question-number">${index + 1}.</span> 
+                ${question.question}
+                <span class="question-section">(${question.section})</span>
+            </h3>
+            <div class="options">
+                ${optionsHTML}
+            </div>
+        `;
+        
+        container.appendChild(questionDiv);
+    });
+}
+
+/**
+ * Barreja un array aleatòriament (algoritme Fisher-Yates)
+ * @param {Array} array - Array a barrejar
+ */
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+/**
  * Mostra una subsecció específica (inicia el test)
  * @param {string} subsectionId - ID de la subsecció
  */
@@ -6488,7 +6584,11 @@ function showResults(results) {
  * Repeteix el test actual
  */
 function retakeTest() {
-    showSubsection(currentSubsection);
+    if (currentSubsection === 'random') {
+        startRandomTest();
+    } else {
+        showSubsection(currentSubsection);
+    }
 }
 
 /**
